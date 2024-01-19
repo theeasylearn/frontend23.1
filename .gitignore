@@ -1,0 +1,7 @@
+app1/node_modules
+<<<<<<< HEAD
+/node_modules
+app2/node_modules
+=======
+/node_modules
+>>>>>>> d3359ee89831f2fb9eba68b737cce328e23d1e4b

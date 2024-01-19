@@ -1,0 +1,26 @@
+&nbsp;  - single space 
+&emsp; - mutliplie space
+br - break (new line)
+b - bold
+i - italic 
+u - underline
+strike - overline
+(h1 - h6) - headings
+p - paragraph
+div - div tag (for grouping tags )
+span - for group small text
+font - for applying font effect to text 
+img - for image 
+hr - horizontal line 
+iframe - for youtube video 
+table - for table
+tr - for table row
+td - for table data (column)
+thead - for table headings
+tbody - for table body
+tfoot - for table footer
+th - inside thead/tfoot
+ol - ordered list
+ul - unordered list
+li - list item
+a - links
