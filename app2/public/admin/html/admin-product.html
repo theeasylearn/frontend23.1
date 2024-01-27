@@ -7,6 +7,7 @@
   <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
+  <link rel="stylesheet" href="../assets/dist/css/lightbox.min.css">
 </head>
 
 <body>
@@ -26,7 +27,7 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav scroll-sidebar shadow" data-simplebar="">
           <ul id="sidebarnav">
-        
+
             <li class="sidebar-item">
               <a class="sidebar-link" href="admin-dashboard.html" aria-expanded="false">
                 <span>
@@ -92,25 +93,45 @@
     <!--  Sidebar End -->
     <!--  Main wrapper -->
     <div class="body-wrapper">
-     
+
       <div style="min-height: 100vh" class="container-fluid bg-secondary-subtle border">
         <div class="card">
           <div class="card-header text-bg-primary p-3">
-              <h3 class="text-white">Products</h3>
+            <h3 class="text-white">Products</h3>
           </div>
           <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Existing Product</h5> <hr/>
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th width="10%">Sr no</th>
-                        <th>Title</th>
-                        <th>Photo</th>
-                        <th>Price</th>
-                        <th width="5%">Is live?</th>
-                        <th width="10%">Actions</th>
-                    </tr>
-                </thead>
+            <h5 class="card-title fw-semibold mb-4">Existing Product</h5>
+            <hr />
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th width="5%">Sr no</th>
+                  <th width="15%">Category</th>
+                  <th width="25%">Title</th>
+                  <th width="20%">Photo</th>
+                  <th width="10%">Price</th>
+                  <th width="5%">Is live?</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Mobile</td>
+                  <td>IPhone 15</td>
+                  <td>
+                    <a class="example-image-link" href="https://picsum.photos/600?random=1" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+                        <img src="https://picsum.photos/150?random=1" class="img-fluid example-image" />
+                    </a>
+                  </td>
+                  <td>125000</td>
+                  <td>Yes</td>
+                  <td class="d-flex justify-content-evenly">
+                    <h1><a href="#"><i class="ti ti-eye"></i></a> </h1>
+                    <h1><a href="#"><i class="ti ti-trash"></i></a> </h1>
+                    <h1><a href="admin-edit-category.html"><i class="ti ti-pencil"></i></a></h1> </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
@@ -122,5 +143,6 @@
   <script src="../assets/js/sidebarmenu.js"></script>
   <script src="../assets/js/app.min.js"></script>
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="../assets/dist/js/lightbox-plus-jquery.min.js"></script>
 </body>
 </html>

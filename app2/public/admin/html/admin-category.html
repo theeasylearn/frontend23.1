@@ -7,6 +7,7 @@
   <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
+  <link rel="stylesheet" href="../assets/dist/css/lightbox.min.css">
 </head>
 
 <body>
@@ -102,7 +103,7 @@
           </div>
           <div class="card-body">
             <h5 class="card-title fw-semibold mb-4">Existing Category</h5> <hr/>
-            <table class="table table-striped table-bordered" width="100%">
+            <table class="table table-bordered" width="100%">
               <thead>
                   <tr>
                     <th width="5%">Sr no</th>
@@ -117,7 +118,9 @@
                     <td>1</td>
                     <td>Mobile</td>
                     <td>
-                      <img class="img-fluid" src="https://picsum.photos/120?random=1" />
+                      <a class="example-image-link" href="https://picsum.photos/600?random=1" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+                      <img class="img-fluid example-image" src="https://picsum.photos/120?random=1" />
+                      </a>
                     </td>
                     <td>
                         Yes
@@ -139,6 +142,7 @@
   <script src="../assets/js/sidebarmenu.js"></script>
   <script src="../assets/js/app.min.js"></script>
   <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="../assets/dist/js/lightbox-plus-jquery.min.js"></script>
 </body>
 
 </html>
