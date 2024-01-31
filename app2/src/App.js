@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route, Link, Routes, Outlet } from 'react-router-dom';
+
 const Home = () => {
-    console.log('home route');
-    <div>Home Page</div>
+    return <div>Home Page</div>;
 };
+
 const About = () => {
-    console.log('about route');
-    <div>About Page</div>
+    return <div>About Page</div>;
 };
+
 function App() {
     return (
         <BrowserRouter>
@@ -23,11 +24,12 @@ function App() {
                 <hr />
                 <Outlet />
                 <Routes>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/about" component={About} />
+                    <Route exact path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
                 </Routes>
             </div>
         </BrowserRouter>
     );
 }
+
 export default App;
