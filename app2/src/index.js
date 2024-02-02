@@ -17,6 +17,7 @@ import AdminDashboard from './AdminDashboard'
 import AdminChangePassword from './AdminChangePassword'
 import PageNotFound from './PageNotFound'
 import AdminLogout from './AdminLogout'
+import AdminProduct from './AdminProduct'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function MyRouter() {
@@ -30,6 +31,7 @@ function MyRouter() {
                 <Route path="/category" element={<AdminCategory />} />
                 <Route path="/edit-category" element={<AdminEditCategory />} />
                 <Route path="/add-category" element={<AdminAddCategory />} />
+                <Route path="/product" element={<AdminProduct />} />
                 <Route path="/insert-product" element={<AdminInsertProduct />} />
                 <Route path="/edit-product" element={<AdminEditProduct />} />
                 <Route path="/product-detail" element={<AdminProductDetail />} />

@@ -12,7 +12,7 @@ export default function AdminMenu() {
             <nav className="sidebar-nav scroll-sidebar shadow" data-simplebar>
                 <ul id="sidebarnav">
                     <li className="sidebar-item">
-                        <a className="sidebar-link" href="admin-dashboard.html" aria-expanded="false">
+                        <a className="sidebar-link" href="/home" aria-expanded="false">
                             <span>
                                 <i className="ti ti-home" />
                             </span>
@@ -20,7 +20,7 @@ export default function AdminMenu() {
                         </a>
                     </li>
                     <li className="sidebar-item">
-                        <a className="sidebar-link" href="admin-category.html" aria-expanded="false">
+                        <a className="sidebar-link" href="/category" aria-expanded="false">
                             <span>
                                 <i className="ti ti-category" />
                             </span>
@@ -28,7 +28,7 @@ export default function AdminMenu() {
                         </a>
                     </li>
                     <li className="sidebar-item">
-                        <a className="sidebar-link" href="admin-product.html" aria-expanded="false">
+                        <a className="sidebar-link" href="/product" aria-expanded="false">
                             <span>
                                 <i className="ti ti-gift" />
                             </span>
@@ -36,7 +36,7 @@ export default function AdminMenu() {
                         </a>
                     </li>
                     <li className="sidebar-item">
-                        <a className="sidebar-link" href="admin-order.html" aria-expanded="false">
+                        <a className="sidebar-link" href="/order" aria-expanded="false">
                             <span>
                                 <i className="ti ti-garden-cart" />
                             </span>
@@ -44,7 +44,7 @@ export default function AdminMenu() {
                         </a>
                     </li>
                     <li className="sidebar-item">
-                        <a className="sidebar-link" href="admin-users.html" aria-expanded="false">
+                        <a className="sidebar-link" href="/user" aria-expanded="false">
                             <span>
                                 <i className="ti ti-users" />
                             </span>
@@ -52,7 +52,7 @@ export default function AdminMenu() {
                         </a>
                     </li>
                     <li className="sidebar-item">
-                        <a className="sidebar-link" href="admin-change-password.html" aria-expanded="false">
+                        <a className="sidebar-link" href="/change-password" aria-expanded="false">
                             <span>
                                 <i className="ti ti-settings-automation" />
                             </span>
@@ -60,7 +60,7 @@ export default function AdminMenu() {
                         </a>
                     </li>
                     <li className="sidebar-item">
-                        <a className="sidebar-link" href="admin-logout.html" aria-expanded="false">
+                        <a className="sidebar-link" href="/logout" aria-expanded="false">
                             <span>
                                 <i className="ti ti-logout" />
                             </span>
