@@ -18,8 +18,8 @@ import AdminChangePassword from './AdminChangePassword'
 import PageNotFound from './PageNotFound'
 import AdminLogout from './AdminLogout'
 import AdminProduct from './AdminProduct'
+import MyHashRouter from './MyHashRouter';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 function MyRouter() {
     return (
         <BrowserRouter>
@@ -44,5 +44,4 @@ function MyRouter() {
         </BrowserRouter>
     );
 }
-
-root.render(<MyRouter />);
+root.render(<MyHashRouter />);
