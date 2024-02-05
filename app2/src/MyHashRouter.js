@@ -1,9 +1,7 @@
 import React from 'react';
 import { HashRouter, Route, Link, Routes, Outlet } from 'react-router-dom';
-
 const Home = () => <div>Home Page</div>;
 const About = () => <div>About Page</div>;
-
 export default function MyHashRouter() {
     return (
         <HashRouter>
