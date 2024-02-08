@@ -1,13 +1,74 @@
 import AdminMenu from "./AdminMenu";
-export default function AdminProduct()
-{
-    return(<div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+import { useEffect, useState } from "react";
+import getBase from "./api";
+import showError from "./toast-message";
+import { ToastContainer } from "react-toastify";
+export default function AdminProduct() {
+
+  //create state array/list
+  let [products,setProduct] = useState([]);
+  useEffect(()=>
+  {
+      var apiAddress = getBase() + "product.php";
+      //api call
+      if(products.length === 0)
+      {
+          fetch(apiAddress)
+          .then((response) => response.json())
+          .then((data)=>{
+              console.log(data);
+              //fetch 1st object
+              let error = data[0]['error'];
+              if(error !== 'no')
+              {
+                 showError(error);
+              }
+              else 
+              {
+                  let total = data[1]['total'];
+                  if(total === 0)
+                  {
+                      showError('no products available');
+                  }
+                  else 
+                  {
+                    //delete 1st 2 object
+                    data.splice(0,2);
+                    setProduct(data);
+                  }
+              }
+          })
+          .catch((error)=>{
+            showError('oops something went wrong, please contact developer....');
+          });
+      }
+  })
+  let DisplayProduct = function (item) {
+    return (<tr>
+      <td>{item.id}</td>
+      <td>{item.categorytitle}</td>
+      <td>{item.title}</td>
+      <td>
+        <a className="example-image-link" href="https://picsum.photos/600?random=1" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+          <img src={"https://theeasylearnacademy.com/shop/images/product/" + item.photo} className="img-fluid example-image" />
+        </a>
+      </td>
+      <td>{item.price}</td>
+      <td>{(item.islive === '1')?"yes":"no"}</td>
+      <td className="d-flex justify-content-evenly">
+        <h1><a href="admin-product-detail.html"><i className="ti ti-eye" /></a> </h1>
+        <h1><a href="#"><i className="ti ti-trash" /></a> </h1>
+        <h1><a href="admin-edit-product.html"><i className="ti ti-pencil" /></a></h1> </td>
+    </tr>);
+  }
+  return (<div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     {/* Sidebar Start */}
     <AdminMenu />
     {/*  Sidebar End */}
     {/*  Main wrapper */}
     <div className="body-wrapper">
-      <div style={{"min-height":"100vh"}} className="container-fluid bg-secondary-subtle border">
+      <ToastContainer />
+      <div style={{ "min-height": "100vh" }} className="container-fluid bg-secondary-subtle border">
         <div className="card">
           <div className="card-header text-bg-primary p-3 d-flex justify-content-between">
             <h3 className="text-white">Products</h3>
@@ -29,22 +90,7 @@ export default function AdminProduct()
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mobile</td>
-                  <td>IPhone 15</td>
-                  <td>
-                    <a className="example-image-link" href="https://picsum.photos/600?random=1" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
-                      <img src="https://picsum.photos/150?random=1" className="img-fluid example-image" />
-                    </a>
-                  </td>
-                  <td>125000</td>
-                  <td>Yes</td>
-                  <td className="d-flex justify-content-evenly">
-                    <h1><a href="admin-product-detail.html"><i className="ti ti-eye" /></a> </h1>
-                    <h1><a href="#"><i className="ti ti-trash" /></a> </h1>
-                    <h1><a href="admin-edit-product.html"><i className="ti ti-pencil" /></a></h1> </td>
-                </tr>
+                  {products.map((item) => DisplayProduct(item))}
               </tbody>
             </table>
           </div>
