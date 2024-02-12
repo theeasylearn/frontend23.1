@@ -34,7 +34,7 @@ function MyRouter() {
                 <Route path="/product" element={<AdminProduct />} />
                 <Route path="/insert-product" element={<AdminInsertProduct />} />
                 <Route path="/edit-product" element={<AdminEditProduct />} />
-                <Route path="/product-detail" element={<AdminProductDetail />} />
+                <Route path="/product-detail/:productid" element={<AdminProductDetail />} />
                 <Route path="/order" element={<AdminOrder />} />
                 <Route path="/order-detail" element={<AdminOrderDetail />} />
                 <Route path="/user" element={<AdminUser />} />

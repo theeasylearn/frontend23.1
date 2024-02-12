@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import getBase from "./api";
 import showError from "./toast-message";
 import { ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
 export default function AdminProduct() {
 
   //create state array/list
@@ -56,7 +57,7 @@ export default function AdminProduct() {
       <td>{item.price}</td>
       <td>{(item.islive === '1')?"yes":"no"}</td>
       <td className="d-flex justify-content-evenly">
-        <h1><a href="admin-product-detail.html"><i className="ti ti-eye" /></a> </h1>
+        <h1><Link to={'/product-detail/' + item.id} ><i className="ti ti-eye" /></Link> </h1>
         <h1><a href="#"><i className="ti ti-trash" /></a> </h1>
         <h1><a href="admin-edit-product.html"><i className="ti ti-pencil" /></a></h1> </td>
     </tr>);
