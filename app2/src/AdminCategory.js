@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { ToastContainer } from 'react-toastify';
 import showError from "./toast-message";
 import 'react-toastify/dist/ReactToastify.css';
-import getBase from "./api";
+import getBase, { getImgBase } from "./api";
 export default function AdminCategory() {
     // /create state array
     let [categories, setCategory] = useState([]);
@@ -44,7 +44,7 @@ export default function AdminCategory() {
             <td>
                 <a className="example-image-link" href="https://picsum.photos/600?random=1" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
                     <img className="img-fluid example-image"
-                        src={"https://www.theeasylearnacademy.com/shop/images/category/" + item.photo} />
+                        src={getImgBase() + "/category/" + item.photo} />
                 </a>
             </td>
             <td>

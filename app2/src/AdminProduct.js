@@ -1,6 +1,6 @@
 import AdminMenu from "./AdminMenu";
 import { useEffect, useState } from "react";
-import getBase from "./api";
+import getBase, { getImgBase } from "./api";
 import showError from "./toast-message";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
@@ -50,8 +50,8 @@ export default function AdminProduct() {
       <td>{item.categorytitle}</td>
       <td>{item.title}</td>
       <td>
-        <a className="example-image-link" href="https://picsum.photos/600?random=1" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
-          <img src={"https://theeasylearnacademy.com/shop/images/product/" + item.photo} className="img-fluid example-image" />
+        <a className="example-image-link" href={getImgBase() + "/product/" + item.photo}  data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+          <img src={getImgBase() + "/product/" + item.photo} className="img-fluid example-image" />
         </a>
       </td>
       <td>{item.price}</td>
@@ -59,7 +59,7 @@ export default function AdminProduct() {
       <td className="d-flex justify-content-evenly">
         <h1><Link to={'/product-detail/' + item.id} ><i className="ti ti-eye" /></Link> </h1>
         <h1><a href="#"><i className="ti ti-trash" /></a> </h1>
-        <h1><a href="admin-edit-product.html"><i className="ti ti-pencil" /></a></h1> </td>
+        <h1><a href="/edit-product"><i className="ti ti-pencil" /></a></h1> </td>
     </tr>);
   }
   return (<div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">

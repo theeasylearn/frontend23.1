@@ -1,6 +1,44 @@
 import AdminMenu from "./AdminMenu";
+import { useEffect, useState } from "react";
+import getBase, { getImgBase } from "./api";
+import showError from "./toast-message";
+import { ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
+import axios from "axios";
+
 export default function AdminOrder()
 {
+    //create state array
+    let [data,setData] = useState([]);
+
+    useEffect(()=>
+    {
+        var apiAddress = getBase() + "orders.php";
+        axios({
+          url: apiAddress,
+          responseType:'json',
+          method:'get'
+        }).then((response)=>{
+            console.log(response);
+            if(response.status !== 200)
+            {
+              showError('oops,something went wrong, please contact administrator');
+            }
+            else if(response.data[0]['error'] !== 'no')
+            {
+              showError(response.data[0]['error']);
+            }
+            else if(response.data[1]['total'] === 0)
+            {
+              showError('no orders found');
+            }
+            else 
+            {
+              response.data.splice(0,2); //remove 1st 2 object
+              setData(response.data);
+            }
+        });
+    });
     return(<div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     {/* Sidebar Start */}
     <AdminMenu />
