@@ -4,6 +4,8 @@ import getBase, { getImgBase } from "./api";
 import showError from "./toast-message";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function AdminProduct() {
 
   //create state array/list

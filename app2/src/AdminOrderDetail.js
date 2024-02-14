@@ -1,8 +1,27 @@
 import AdminMenu from "./AdminMenu";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import getBase from "./api";
+import showError from "./toast-message";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react";
+
 export default function AdminOrderDetail()
 {
+    var {orderid} = useParams(); //fetch parameter from url
+    console.log(orderid);
+    useEffect(()=>{
+      // api call
+      let apiAddress = getBase + "orders.php?id=" + orderid;
+      // axios({
+
+      // });
+
+    });
     return(<div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     {/* Sidebar Start */}
+    <ToastContainer />
     <AdminMenu />
     {/*  Sidebar End */}
     {/*  Main wrapper */}

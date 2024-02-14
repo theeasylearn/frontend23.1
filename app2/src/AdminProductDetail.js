@@ -3,6 +3,8 @@ import AdminMenu from "./AdminMenu";
 import axios from "axios";
 import getBase,{getImgBase} from "./api";
 import showError from "./toast-message";
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function AdminProductDetail() {
   let url = window.location.href;
   // console.log(url);
@@ -11,6 +13,7 @@ export default function AdminProductDetail() {
   let productid = url.substring(last_slash_position, url.length);
   // console.log(productid);
   let [product, setProduct] = useState({});
+  
   useEffect(() => {
     if (product.id === undefined) {
       let apiAddress = getBase() + "product.php?productid=" + productid;
