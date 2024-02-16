@@ -11,3 +11,15 @@ export default function showError(message) {
         theme: "colored",
     });
 };
+export function showMessage(message) {
+    toast.success(message, {
+        position: "bottom-center",
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+    });
+};
