@@ -4,10 +4,15 @@ import getBase from "./api";
 import axios from "axios";
 import showError, { showMessage } from "./toast-message";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import {useCookies} from 'react-cookie';
 export default function AdminLogin()
 {
+    let [cookies, setCookie,removeCookie] = useCookies(['theeasylearn']);
+
     let [email,setEmail] = useState();
     let [password,setPassword] = useState();
+    let navigate = useNavigate();
     let Login = function(event)
     {
         console.log(email,password);
@@ -41,7 +46,11 @@ export default function AdminLogin()
                 else 
                 {
                     showMessage(message);
-                    
+                    //create cookie to store userid 
+                    setCookie("id",response.data[3]['id'],{path:'/'});
+                    console.log(cookies['id']);
+                    //redirect user on home          
+                    navigate("/home");
                 }
             }
         })
