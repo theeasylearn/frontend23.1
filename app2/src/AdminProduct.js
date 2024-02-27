@@ -5,9 +5,10 @@ import showError from "./toast-message";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
+import VerifyLogin from "./VerifyLogin";
 
 export default function AdminProduct() {
-
+  VerifyLogin();
   //create state array/list
   let [products,setProduct] = useState([]);
   useEffect(()=>
@@ -75,7 +76,7 @@ export default function AdminProduct() {
         <div className="card">
           <div className="card-header text-bg-primary p-3 d-flex justify-content-between">
             <h3 className="text-white">Products</h3>
-            <a href="admin-insert-product.html" className="btn btn-light">Add product</a>
+            <Link to="/insert-product" className="btn btn-light">Add product</Link>
           </div>
           <div className="card-body">
             <h5 className="card-title fw-semibold mb-4">Existing Product</h5>

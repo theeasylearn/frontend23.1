@@ -4,8 +4,11 @@ import { ToastContainer } from 'react-toastify';
 import showError from "./toast-message";
 import 'react-toastify/dist/ReactToastify.css';
 import getBase, { getImgBase } from "./api";
+import VerifyLogin from "./VerifyLogin";
+import { Link } from "react-router-dom";
 export default function AdminCategory() {
     // /create state array
+    VerifyLogin();
     let [categories, setCategory] = useState([]);
     useEffect(() => {
         //api call 
@@ -67,7 +70,7 @@ export default function AdminCategory() {
                 <div className="card">
                     <div className="card-header text-bg-primary p-3 d-flex justify-content-between">
                         <h3 className="text-white">Categories</h3>
-                        <a href="admin-add-category.html" className="btn btn-light">Add category</a>
+                        <Link to="/add-category" className="btn btn-light">Add category</Link>
                     </div>
                     <div className="card-body">
                         <h5 className="card-title fw-semibold mb-4">Existing Category</h5> <hr />

@@ -1,6 +1,8 @@
 import AdminMenu from "./AdminMenu";
+import VerifyLogin from "./VerifyLogin";
 export default function AdminEditProduct()
 {
+    VerifyLogin();
     return(<div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     {/* Sidebar Start */}
     <AdminMenu />

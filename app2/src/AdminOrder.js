@@ -6,12 +6,13 @@ import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
+import VerifyLogin from "./VerifyLogin";
 
 export default function AdminOrder() {
   //create state array
   let [data, setData] = useState([]);
   let [isDataFetched, setDataFetched] = useState(false);
-
+  VerifyLogin();
   useEffect(() => {
     if (isDataFetched === false) {
       var apiAddress = getBase() + "orders.php";

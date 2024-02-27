@@ -5,8 +5,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import getBase from "./api";
 import axios from 'axios';
 import showError from "./toast-message";
+import VerifyLogin from "./VerifyLogin";
 
 export default function AdminUser() {
+  VerifyLogin();
   //create state array
   let [users, setUser] = useState([]);
   useEffect(() => {

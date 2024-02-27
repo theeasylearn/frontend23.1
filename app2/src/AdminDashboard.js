@@ -1,22 +1,8 @@
 import AdminMenu from "./AdminMenu";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import VerifyLogin from "./VerifyLogin";
 export default function AdminDashboard() {
-  let SendToLogin = function () {
-    useEffect(() => {
-      navigate("/");
-    });
-  }
-  let [cookies, setCookie, removeCookie] = useCookies(['theeasylearn']);
-  let navigate = useNavigate();
-
-  console.log(cookies['id']);
-
-  if (cookies['id'] === undefined) {
-    SendToLogin();
-  }
+  VerifyLogin();
   return (
     <motion.div
       initial={{ opacity: 0, x: "100%" }}
