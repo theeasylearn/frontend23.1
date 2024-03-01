@@ -1,11 +1,12 @@
 import AdminMenu from "./AdminMenu"
 import { useEffect, useState } from "react";
 import { ToastContainer } from 'react-toastify';
-import showError from "./toast-message";
+import showError, { showMessage } from "./toast-message";
 import 'react-toastify/dist/ReactToastify.css';
 import getBase, { getImgBase } from "./api";
 import VerifyLogin from "./VerifyLogin";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 export default function AdminCategory() {
     // /create state array
     VerifyLogin();
@@ -39,6 +40,35 @@ export default function AdminCategory() {
         }
 
     });
+    let DeleteCategory = function(e,id)
+    {
+        console.log(id);
+        let apiAddress = getBase() + "delete_category.php?id=" + id;
+        axios({
+            method:'get',
+            responseType:'json',
+            url:apiAddress
+        }).then((response) => {
+            console.log(response);
+            let error = response.data[0]['error'];
+            if(error !=='no')
+                showError(error);
+            else 
+            {
+                showMessage(response.data[1]['message']);
+                let temp = categories.filter((item) => {
+                    if(item.id !== id)
+                        return item
+                });
+                setCategory(temp);  
+            }
+        }).catch((error)=>{
+            if(error.code === 'ERR_NETWORK')
+                showError('either you are or server is offline');
+        });
+        e.preventDefault();
+
+    }
     let DisplayCategory = function (item) {
 
         return (<tr>
@@ -54,8 +84,8 @@ export default function AdminCategory() {
                 {(item.islive === "1" ? "Yes" : "No")}
             </td>
             <td className="d-flex justify-content-between">
-                <h1><a href="#"><i className="ti ti-trash" /></a> </h1>
-                <h1><a href="admin-edit-category.html"><i className="ti ti-pencil" /></a></h1>
+                <h1><a href="#" onClick={(e) => DeleteCategory(e,item.id)}><i className="ti ti-trash" /></a> </h1>
+                <h1><Link to={"/edit-category/" + item.id}><i className="ti ti-pencil" /></Link></h1>
             </td>
         </tr>);
     }

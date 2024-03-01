@@ -1,67 +1,84 @@
 import AdminMenu from "./AdminMenu";
 import { useEffect, useState } from "react";
 import getBase, { getImgBase } from "./api";
-import showError from "./toast-message";
+import showError, { showMessage } from "./toast-message";
 import { ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import VerifyLogin from "./VerifyLogin";
+import axios from 'axios';
 
 export default function AdminProduct() {
   VerifyLogin();
   //create state array/list
-  let [products,setProduct] = useState([]);
-  useEffect(()=>
-  {
-      var apiAddress = getBase() + "product.php";
-      //api call
-      if(products.length === 0)
-      {
-          fetch(apiAddress)
-          .then((response) => response.json())
-          .then((data)=>{
-              console.log(data);
-              //fetch 1st object
-              let error = data[0]['error'];
-              if(error !== 'no')
-              {
-                 showError(error);
-              }
-              else 
-              {
-                  let total = data[1]['total'];
-                  if(total === 0)
-                  {
-                      showError('no products available');
-                  }
-                  else 
-                  {
-                    //delete 1st 2 object
-                    data.splice(0,2);
-                    setProduct(data);
-                  }
-              }
-          })
-          .catch((error)=>{
-            showError('oops something went wrong, please contact developer....');
-          });
-      }
+  let [products, setProduct] = useState([]);
+  useEffect(() => {
+    var apiAddress = getBase() + "product.php";
+    //api call
+    if (products.length === 0) {
+      fetch(apiAddress)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          //fetch 1st object
+          let error = data[0]['error'];
+          if (error !== 'no') {
+            showError(error);
+          }
+          else {
+            let total = data[1]['total'];
+            if (total === 0) {
+              showError('no products available');
+            }
+            else {
+              //delete 1st 2 object
+              data.splice(0, 2);
+              setProduct(data);
+            }
+          }
+        })
+        .catch((error) => {
+          showError('oops something went wrong, please contact developer....');
+        });
+    }
   })
+  let DeleteProduct = function (e, id) {
+    e.preventDefault();
+    let apiAddress = getBase() + "delete_product.php?id=" + id;
+    console.log(apiAddress);
+    axios({
+      method: 'get',
+      responseType: 'json',
+      url: apiAddress
+    }).then((response) => {
+      console.log(response);
+      let error = response.data[0]['error'];
+      if (error !== 'no')
+        showError(error);
+      else {
+        showMessage(response.data[1]['message']);
+        setProduct(products.filter((item) => {
+          if (item.id !== id)
+            return item;
+        }));
+      }
+    })
+  }
   let DisplayProduct = function (item) {
     return (<tr>
       <td>{item.id}</td>
       <td>{item.categorytitle}</td>
       <td>{item.title}</td>
       <td>
-        <a className="example-image-link" href={getImgBase() + "/product/" + item.photo}  data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+        <a className="example-image-link" href={getImgBase() + "/product/" + item.photo} data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
           <img src={getImgBase() + "/product/" + item.photo} className="img-fluid example-image" />
         </a>
       </td>
       <td>{item.price}</td>
-      <td>{(item.islive === '1')?"yes":"no"}</td>
+      <td>{(item.islive === '1') ? "yes" : "no"}</td>
       <td className="d-flex justify-content-evenly">
         <h1><Link to={'/product-detail/' + item.id} ><i className="ti ti-eye" /></Link> </h1>
-        <h1><a href="#"><i className="ti ti-trash" /></a> </h1>
+        <h1><a href="#" onClick={(e) => DeleteProduct(e, item.id)}><i className="ti ti-trash" /></a> </h1>
         <h1><a href="/edit-product"><i className="ti ti-pencil" /></a></h1> </td>
     </tr>);
   }
@@ -94,7 +111,7 @@ export default function AdminProduct() {
                 </tr>
               </thead>
               <tbody>
-                  {products.map((item) => DisplayProduct(item))}
+                {products.map((item) => DisplayProduct(item))}
               </tbody>
             </table>
           </div>

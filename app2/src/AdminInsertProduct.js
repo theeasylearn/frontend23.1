@@ -1,6 +1,6 @@
 import { ToastContainer } from "react-toastify";
 import AdminMenu from "./AdminMenu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import getBase from "./api";
 import axios from "axios";
 import showError, { showMessage } from "./toast-message";
@@ -18,6 +18,35 @@ export default function AdminInsertProduct() {
   var [description, setDescription] = useState('');
 
   var navigate = useNavigate();
+  //create state array 
+  let [categories, setCategory] = useState([]);
+  useEffect(() => {
+    if (categories.length === 0) {
+      let apiAddress = getBase() + "category.php";
+      axios({
+        method: 'get',
+        responseType: 'json',
+        url: apiAddress
+      }).then((response) => {
+        console.log(response);
+        let error = response.data[0]['error'];
+        if (error !== 'no')
+          showError(error);
+        else if (response.data[1]['total'] === 0) {
+          showError('no category found');
+        }
+        else {
+          response.data.splice(0, 2);
+          setCategory(response.data);
+        }
+      }).catch((error) => {
+        console.log(error);
+        if (error.code === 'ERR_NETWORK')
+          showError('you are offline or server is offline');
+
+      });
+    }
+  });
   let insertProduct = function (event) {
     event.preventDefault();
     console.log(categoryID, name, price, stock, weight, size, photo, description, isLive);
@@ -43,25 +72,21 @@ export default function AdminInsertProduct() {
     }).then((response) => {
       console.log(response);
       let error = response.data[0]['error'];
-      if(error !== 'no')
-      {
-          showError(error);
+      if (error !== 'no') {
+        showError(error);
       }
-      else 
-      {
-          let success = response.data[1]['success'];
-          let message = response.data[2]['message'];
-          if(success === 'no')
-          {
-              showError(message);
-          }
-          else 
-          {
-            showMessage(message);
-            setTimeout(()=>{
-              navigate("/product");
-            },2000);
-          }
+      else {
+        let success = response.data[1]['success'];
+        let message = response.data[2]['message'];
+        if (success === 'no') {
+          showError(message);
+        }
+        else {
+          showMessage(message);
+          setTimeout(() => {
+            navigate("/product");
+          }, 2000);
+        }
       }
     }).catch((error) => {
       console.log(error);
@@ -93,11 +118,11 @@ export default function AdminInsertProduct() {
                     name="categoryId"
                     required
                     value={categoryID}
-                    onChange={(event) => setCategoryID(event.target.value)}
-                  >
-                    <option>Select</option>
-                    <option value={1}>Category 1</option>
-                    <option value={2}>Category 2</option>
+                    onChange={(event) => setCategoryID(event.target.value)}>
+                    <option value=''>Select</option>
+                    {categories.map((item) => {
+                      return <option value={item['id']}>{item['title']}</option>
+                    })}
                   </select>
                 </div>
                 <div className="col-md-4">

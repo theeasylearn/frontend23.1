@@ -47,7 +47,7 @@ function MyRouter() {
             <Route path="/home" element={<AnimatedRoute component={<AdminDashboard />} />} />
             <Route path="/forgot-password" element={<AnimatedRoute component={<AdminForgotPassword />} />} />
             <Route path="/category" element={<AnimatedRoute component={<AdminCategory />} />} />
-            <Route path="/edit-category" element={<AnimatedRoute component={<AdminEditCategory />} />} />
+            <Route path="/edit-category/:categoryid" element={<AnimatedRoute component={<AdminEditCategory />} />} />
             <Route path="/add-category" element={<AnimatedRoute component={<AdminAddCategory />} />} />
             <Route path="/product" element={<AnimatedRoute component={<AdminProduct />} />} />
             <Route path="/insert-product" element={<AnimatedRoute component={<AdminInsertProduct />} />} />
