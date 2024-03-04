@@ -79,7 +79,7 @@ export default function AdminProduct() {
       <td className="d-flex justify-content-evenly">
         <h1><Link to={'/product-detail/' + item.id} ><i className="ti ti-eye" /></Link> </h1>
         <h1><a href="#" onClick={(e) => DeleteProduct(e, item.id)}><i className="ti ti-trash" /></a> </h1>
-        <h1><a href="/edit-product"><i className="ti ti-pencil" /></a></h1> </td>
+        <h1><a href={"/edit-product/" + item.id}><i className="ti ti-pencil" /></a></h1> </td>
     </tr>);
   }
   return (<div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">

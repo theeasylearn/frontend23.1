@@ -1,8 +1,18 @@
+import { useParams } from "react-router-dom";
 import AdminMenu from "./AdminMenu";
 import VerifyLogin from "./VerifyLogin";
+import { useEffect } from "react";
+import getBase from "./api";
 export default function AdminEditProduct()
 {
     VerifyLogin();
+    let {productid} = useParams(); 
+    console.log(productid);
+    useEffect(() => {
+        let apiAddress = getBase() + "product.php?productid=" + productid;
+        console.log(apiAddress);
+        
+    });
     return(<div className="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
     {/* Sidebar Start */}
     <AdminMenu />

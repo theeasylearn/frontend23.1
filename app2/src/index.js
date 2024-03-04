@@ -51,7 +51,7 @@ function MyRouter() {
             <Route path="/add-category" element={<AnimatedRoute component={<AdminAddCategory />} />} />
             <Route path="/product" element={<AnimatedRoute component={<AdminProduct />} />} />
             <Route path="/insert-product" element={<AnimatedRoute component={<AdminInsertProduct />} />} />
-            <Route path="/edit-product" element={<AnimatedRoute component={<AdminEditProduct />} />} />
+            <Route path="/edit-product/:productid" element={<AnimatedRoute component={<AdminEditProduct />} />} />
             <Route path="/product-detail/:productid" element={<AnimatedRoute component={<AdminProductDetail />} />} />
             <Route path="/order" element={<AnimatedRoute component={<AdminOrder />} />} />
             <Route path="/order-detail/:orderid" element={<AnimatedRoute component={<AdminOrderDetail />} />} />
