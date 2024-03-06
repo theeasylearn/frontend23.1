@@ -9,6 +9,8 @@ import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 export default function AdminEditProduct() {
   VerifyLogin();
+  let navigate = useNavigate();
+
   let { productid } = useParams();
   console.log(productid);
   var [name, setName] = useState("");
@@ -22,6 +24,15 @@ export default function AdminEditProduct() {
   var [selectedCategory, setSelectedCategory] = useState("");
   var [isLive, setIsLive] = useState("");
   var [category, setCategory] = useState([]);
+  
+  let resetInput = function() {
+      setName('');
+      setPrice('');
+      setStock('');
+      setSize('');
+      setComments('');
+      setWeight('');
+  }
 
   let updateProduct = function (event) {
     event.preventDefault();
@@ -36,6 +47,50 @@ export default function AdminEditProduct() {
       selectedCategory,
       isLive,
     });
+    //call api 
+    let apiAddress = getBase() + "update_product.php";
+    let form = new FormData();
+    // input : name,photo,price,stock,detail,productid,categoryid (required) 
+    form.append("name", name);
+    form.append("photo", photo);
+    form.append("price", price);
+    form.append("stock", stock);
+    form.append("categoryid", selectedCategory);
+    form.append("detail", comments);
+    form.append("productid", productid);
+    form.append("size", size);
+    form.append("weight", weight);
+    form.append("islive", isLive);
+    console.log(form);
+    axios(
+      {
+        url: apiAddress,
+        method: 'post',
+        responseType: 'json',
+        data: form
+      }).then((response) => {
+        console.log(response);
+        console.log(response.data);
+        let error = response.data[0]['error'];
+        if (error !== 'no') {
+          showError(error);
+        }
+        else {
+          let success = response.data[1]['success'];
+          let message = response.data[2]['message'];
+          if (success === 'no')
+            showError(message);
+          else {
+            showMessage(message);
+            setTimeout(() => {
+              navigate("/product");
+            }, 2000);
+          }
+        }
+      }).catch((error) => {
+        showError('oops something went wrong on server.');
+      });
+
   }
 
   let fetchSingleProduct = function () {
@@ -122,7 +177,7 @@ export default function AdminEditProduct() {
           <div className="card-body">
             <h5 className="card-title fw-semibold mb-4">Edit product</h5>
             <hr />
-            <form onSubmit={updateProduct}>
+            <form onSubmit={updateProduct} encType="multipart/form-data">
               <div className="row">
                 <div className="col-9">
                   {/* 1st row */}
@@ -200,7 +255,7 @@ export default function AdminEditProduct() {
               <div className="row">
                 <div className="col-12 text-end">
                   <input type="submit" value="Save changes" className="btn btn-primary" />
-                  <input type="reset" defaultValue="clear all" className="btn btn-dark-light" />
+                  <input type="reset" onClick={resetInput} value="clear all" className="btn btn-dark-light" />
                 </div>
               </div>
             </form>
